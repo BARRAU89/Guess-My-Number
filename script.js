@@ -15,3 +15,23 @@ document.querySelector('.score').textContent = 10;
 document.querySelector('.guess').value = 23;
 console.log(document.querySelector('.guess').value); //with an input field, to get the actual value, we use the 'Value' property
 */
+
+// For the 'Check' Button -------------------------- //
+/*
+const printNumber = function () {
+  console.log(document.querySelector('.guess').value);
+};
+
+document.querySelector('.check').addEventListener('click', printNumber);
+//the addEventListener requieres two arguments; first, the event that will triger the action, and the action, that is a function.  Due tue functions are values, they can by passed by to other functions as arguments. In this case we are using the 'printNumber' variable (which contains a function).
+*/
+
+const printNumber = function () {
+  if (!guess) {
+    document.querySelector('.message').textContent = 'No number! ⛔️';
+  }
+  const guess = Number(document.querySelector('.guess').value);
+  console.log(guess);
+};
+
+document.querySelector('.check').addEventListener('click', printNumber);
