@@ -35,6 +35,8 @@ const guessedNumber = function () {
     document.querySelector('.message').textContent = 'No number! ⛔️';
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = '🎉 Correct Number!';
+  } else if (guess >= 21) {
+    document.querySelector('.message').textContent = 'Not a valid number 👎';
   } else if (guess > secretNumber) {
     document.querySelector('.message').textContent = 'Too High ⬆';
   } else {
