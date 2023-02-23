@@ -25,13 +25,23 @@ const printNumber = function () {
 document.querySelector('.check').addEventListener('click', printNumber);
 //the addEventListener requieres two arguments; first, the event that will triger the action, and the action, that is a function.  Due tue functions are values, they can by passed by to other functions as arguments. In this case we are using the 'printNumber' variable (which contains a function).
 */
+const secretNumber = Math.trunc(Math.random() * 20) + 1;
+document.querySelector('.number').textContent = secretNumber;
 
-const printNumber = function () {
+const guessedNumber = function () {
+  const guess = Number(document.querySelector('.guess').value);
+
   if (!guess) {
     document.querySelector('.message').textContent = 'No number! ⛔️';
+  } else if (guess === secretNumber) {
+    document.querySelector('.message').textContent = '🎉 Correct Number!';
+  } else if (guess > secretNumber) {
+    document.querySelector('.message').textContent = 'Too High ⬆';
+  } else {
+    document.querySelector('.message').textContent = 'Too Low ⬇';
   }
-  const guess = Number(document.querySelector('.guess').value);
+
   console.log(guess);
 };
 
-document.querySelector('.check').addEventListener('click', printNumber);
+document.querySelector('.check').addEventListener('click', guessedNumber);
