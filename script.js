@@ -25,9 +25,15 @@ const printNumber = function () {
 document.querySelector('.check').addEventListener('click', printNumber);
 //the addEventListener requieres two arguments; first, the event that will triger the action, and the action, that is a function.  Due tue functions are values, they can by passed by to other functions as arguments. In this case we are using the 'printNumber' variable (which contains a function).
 */
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
-document.querySelector('.number').textContent = secretNumber;
 
+// To define the random number ----------------------------------------------- //
+const secretNumber = Math.trunc(Math.random() * 20) + 1;
+document.querySelector('.number').textContent = secretNumber; //this should be commented out when finised
+
+// To handle the score  ------------------------------------------------------ //
+let score = 20;
+
+// Function that will handle the logif of the input number ------------------- //
 const guessedNumber = function () {
   const guess = Number(document.querySelector('.guess').value);
 
@@ -35,15 +41,19 @@ const guessedNumber = function () {
     document.querySelector('.message').textContent = 'No number! ⛔️';
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = '🎉 Correct Number!';
-  } else if (guess >= 21) {
+  } else if (guess >= 21 || guess < 0) {
     document.querySelector('.message').textContent = 'Not a valid number 👎';
+    score--;
+    document.querySelector('.score').textContent = score;
   } else if (guess > secretNumber) {
     document.querySelector('.message').textContent = 'Too High ⬆';
+    score--;
+    document.querySelector('.score').textContent = score;
   } else {
     document.querySelector('.message').textContent = 'Too Low ⬇';
+    score--;
+    document.querySelector('.score').textContent = score;
   }
-
-  console.log(guess);
 };
-
+// For the 'Check' Button --------------------------------------------------- //
 document.querySelector('.check').addEventListener('click', guessedNumber);
