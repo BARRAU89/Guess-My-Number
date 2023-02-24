@@ -28,10 +28,11 @@ document.querySelector('.check').addEventListener('click', printNumber);
 
 // To define the random number ----------------------------------------------- //
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
-// document.querySelector('.number').textContent = secretNumber; //this should be commented out when finised
+document.querySelector('.number').textContent = secretNumber; //this should be commented out when finised
 
 // To handle the score  ------------------------------------------------------ //
 let score = 20;
+let highScore = 0;
 
 // Function that will handle the logif of the input number ------------------- //
 const guessedNumber = function () {
@@ -46,6 +47,13 @@ const guessedNumber = function () {
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('.number').style.width = '30rem';
+
+    //to handle Highscore
+    if (highScore === 0) {
+      highScore = score;
+    } else if (highScore !== 0 && highScore < score) {
+      highScore = score;
+    }
 
     //When player selects number outside of the range (1 to 20)
   } else if (guess >= 21 || guess == 0) {
