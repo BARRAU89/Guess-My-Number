@@ -28,7 +28,7 @@ document.querySelector('.check').addEventListener('click', printNumber);
 
 // To define the random number ----------------------------------------------- //
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
-document.querySelector('.number').textContent = secretNumber; //this should be commented out when finised
+// document.querySelector('.number').textContent = secretNumber; //this should be commented out when finised
 
 // To handle the score  ------------------------------------------------------ //
 let score = 20;
@@ -39,16 +39,27 @@ const guessedNumber = function () {
 
   if (!guess) {
     document.querySelector('.message').textContent = 'No number! ⛔️';
+
+    //When player selects the correct number and wins
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = '🎉 Correct Number!';
-  } else if (guess >= 21 || guess < 0) {
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    document.querySelector('.number').textContent = secretNumber;
+    document.querySelector('.number').style.width = '30rem';
+
+    //When player selects number outside of the range (1 to 20)
+  } else if (guess >= 21 || guess == 0) {
     document.querySelector('.message').textContent = 'Not a valid number 👎';
     score--;
     document.querySelector('.score').textContent = score;
+
+    //When player selects a number greater than the secret number
   } else if (guess > secretNumber) {
     document.querySelector('.message').textContent = 'Too High ⬆';
     score--;
     document.querySelector('.score').textContent = score;
+
+    //When player selects a number lesser than the secret number
   } else {
     document.querySelector('.message').textContent = 'Too Low ⬇';
     score--;
