@@ -31,10 +31,11 @@ const secretNumber = Math.trunc(Math.random() * 20) + 1;
 document.querySelector('.number').textContent = secretNumber; //this should be commented out when finised
 
 // To handle the score  ------------------------------------------------------ //
+const initialScore = 20;
 let score = 20;
 let highScore = 0;
 
-// Function that will handle the logif of the input number ------------------- //
+// Function that will handle the logic of the input number ------------------- //
 const guessedNumber = function () {
   const guess = Number(document.querySelector('.guess').value);
 
@@ -51,10 +52,11 @@ const guessedNumber = function () {
     //to handle Highscore
     if (highScore === 0) {
       highScore = score;
+      document.querySelector('.highscore').textContent = score;
     } else if (highScore !== 0 && highScore < score) {
       highScore = score;
+      document.querySelector('.highscore').textContent = score;
     }
-
     //When player selects number outside of the range (1 to 20)
   } else if (guess >= 21 || guess == 0) {
     document.querySelector('.message').textContent = 'Not a valid number 👎';
@@ -74,5 +76,42 @@ const guessedNumber = function () {
     document.querySelector('.score').textContent = score;
   }
 };
+
+// Function that will handle the logic of the Again button  ------------------- //
+const resetGame = function () {
+  //Return background color
+  document.querySelector('body').style.backgroundColor = '#222';
+
+  //Return number box size and hide number again
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.number').style.width = '15rem';
+
+  //Calculate a new number //BUG
+  document.querySelector('.number').value = secretNumber;
+
+  //Return 'Start guessing' phrase
+  document.querySelector('.message').textContent = 'Start guessing...';
+
+  //Clear input box
+  document.querySelector('.guess').value = '';
+
+  //Return score to Maximum
+  document.querySelector('.score').textContent = initialScore;
+
+  //Keep Highscore //BUG
+  if (highScore === 0) {
+    highScore = score;
+    document.querySelector('.highscore').textContent = score;
+  } else if (highScore !== 0 && highScore < score) {
+    highScore === score;
+    document.querySelector('.highscore').textContent = score;
+  }
+};
+
+// Buttons ------------------------------------------------------------------ //
+
+// For the 'Again' Button --------------------------------------------------- //
+document.querySelector('.again').addEventListener('click', resetGame);
+
 // For the 'Check' Button --------------------------------------------------- //
 document.querySelector('.check').addEventListener('click', guessedNumber);
