@@ -50,12 +50,9 @@ const guessedNumber = function () {
     document.querySelector('.number').style.width = '30rem';
 
     //to handle Highscore
-    if (highScore === 0) {
+    if (highScore < score) {
       highScore = score;
-      document.querySelector('.highscore').textContent = score;
-    } else if (highScore !== 0 && highScore < score) {
-      highScore = score;
-      document.querySelector('.highscore').textContent = score;
+      document.querySelector('.highscore').textContent = highScore;
     }
     //When player selects number outside of the range (1 to 20)
   } else if (guess >= 21 || guess == 0) {
