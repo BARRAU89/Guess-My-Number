@@ -60,17 +60,17 @@ const guessedNumber = function () {
     score--;
     document.querySelector('.score').textContent = score;
 
-    //When player selects a number greater than the secret number
-  } else if (guess > secretNumber) {
-    document.querySelector('.message').textContent = 'Too High ⬆';
-    score--;
-    document.querySelector('.score').textContent = score;
-
-    //When player selects a number lesser than the secret number
+    //When player selects a wrong secret number
   } else {
-    document.querySelector('.message').textContent = 'Too Low ⬇';
-    score--;
-    document.querySelector('.score').textContent = score;
+    if (score > 1) {
+      document.querySelector('.message').textContent =
+        guess > secretNumber ? 'Too High ⬆' : 'Too Low ⬇';
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else {
+      document.querySelector('.message').textContent = '😵 You lost!';
+      document.querySelector('.score').textContent = 0;
+    }
   }
 };
 
